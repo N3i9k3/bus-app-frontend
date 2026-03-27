@@ -6,7 +6,7 @@ route: "Nagpur → Pune",
 totalSeats: 50,
 availableSeats: 12,
 passengers: 38,
-nextStop: "Wardha",
+BusStops: { stops: ["Nagpur","Wardha","Amravati","Akola","Aurangabad","Pune"] },
 stops: ["Nagpur","Wardha","Amravati","Akola","Aurangabad","Pune"]
 };
 
@@ -21,7 +21,7 @@ return (
 <p><b>Total Seats:</b> {busData.totalSeats}</p>
 <p><b>Available Seats:</b> {busData.availableSeats}</p>
 <p><b>Passengers:</b> {busData.passengers}</p>
-<p><b>Next Stop:</b> {busData.nextStop}</p>
+<p><b>BusStops:</b> {busData.BusStops.stops.join(" → ")}</p>
 
 <h3>Stops</h3>
 
