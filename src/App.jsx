@@ -57,7 +57,7 @@ Live Tracking
 </button>
 
 <button onClick={()=>setMode("simulation")}>
-Nagpur → Pune Simulation
+Bus Simulation
 </button>
 
 {mode==="live" && <BusMap />}
