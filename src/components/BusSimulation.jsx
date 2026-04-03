@@ -638,15 +638,43 @@ function BusSimulation() {
 
   // 🔥 ROUTES
   const cityCoords = {
-  nagpur: [21.1458, 79.0882],
-  wardha: [20.7453, 78.6022],
-  pune: [18.5204, 73.8567],
-  delhi: [28.6139, 77.2090],
-  indore: [22.7196, 75.8577],
-  bhopal: [23.2599, 77.4126],
-  jaipur: [26.9124, 75.7873],
-  mumbai: [19.0760, 72.8777],
+  ahmednagar: [19.0948, 74.7480],
+  akola: [20.7002, 77.0082],
+  amravati: [20.9374, 77.7796],
+  chhatrapati_sambhajinagar: [19.8762, 75.3433], 
+  beed: [18.9891, 75.7601],
+  bhandara: [21.1448, 79.6521],
+  buldhana: [20.5286, 76.1843],
   chandrapur: [19.9515, 79.2961],
+  dhule: [20.9042, 74.7749],
+  gadchiroli: [20.1848, 79.9948],
+  gondia: [21.4624, 80.2207],
+  hingoli: [19.7153, 77.1471],
+  jalgaon: [21.0077, 75.5626],
+  jalna: [19.8297, 75.8800],
+  kolhapur: [16.7050, 74.2433],
+  latur: [18.4088, 76.5603],
+  mumbai_city: [18.9220, 72.8347],
+  mumbai_suburban: [19.0600, 72.8600], // Bandra
+  nagpur: [21.1458, 79.0882],
+  nanded: [19.1429, 77.3037],
+  nandurbar: [21.3703, 74.2384],
+  nashik: [19.9975, 73.7898],
+  osmanabad: [18.1853, 76.0420], // Dharashiv
+  palghar: [19.6936, 72.7655],
+  parbhani: [19.2677, 76.7748],
+  pune: [18.5204, 73.8567],
+  raigad: [18.5158, 73.1822], // Alibag
+  ratnagiri: [16.9902, 73.3120],
+  sangli: [16.8524, 74.5815],
+  satara: [17.6805, 73.9915],
+  sindhudurg: [16.1084, 73.6293], // Oros
+  solapur: [17.6599, 75.9064],
+  thane: [19.2183, 72.9781],
+  wardha: [20.7453, 78.6022],
+  washim: [20.1005, 77.1333],
+  yavatmal: [20.3888, 78.1204],
+  mumbai: [19.0760, 72.8777] // General Mumbai coordinate
 };
 
   // 🔹 States
@@ -669,17 +697,61 @@ function BusSimulation() {
   }, []);
 
   // 🔥 Start simulation for selected bus
- const startBus = (bus) => {
+//  const startBus = (bus) => {
 
-  const start = cityCoords[bus.source.toLowerCase().trim()];
-  const end = cityCoords[bus.destination.toLowerCase().trim()];
+//   const start = cityCoords[bus.source.toLowerCase().trim()];
+//   const end = cityCoords[bus.destination.toLowerCase().trim()];
 
-  if (!start || !end) {
+//   if (!start || !end) {
+//     alert("Route not defined for this city");
+//     return;
+//   }
+
+//   const routePath = [start, end];
+
+//   setActiveBuses(prev => ({
+//     ...prev,
+//     [bus.id]: {
+//       route: routePath,
+//       index: 0,
+//       step: 0,
+//       position: start
+//     }
+//   }));
+// };
+
+
+
+const startBus = (bus) => {
+  const source = bus.source.toLowerCase().trim();
+  const destination = bus.destination.toLowerCase().trim();
+
+  // 🔥 Predefined smart route map
+  const routeMap = {
+    "nagpur-pune": ["nagpur", "amravati", "akola", "chhatrapati_sambhajinagar", "nashik", "pune"],
+    "nagpur-mumbai": ["nagpur", "amravati", "akola", "chhatrapati_sambhajinagar", "nashik", "pune", "mumbai"],
+    "nagpur-delhi": ["nagpur", "bhopal", "jaipur", "delhi"],
+    "nagpur-wardha": ["nagpur", "wardha"],
+    "nagpur-chandrapur": ["nagpur", "wardha", "chandrapur"]
+  };
+
+  const routeKey = `${source}-${destination}`;
+
+  let routeCities = routeMap[routeKey];
+
+  // 🔥 fallback if route not defined
+  if (!routeCities) {
+    routeCities = [source, destination];
+  }
+
+  const routePath = routeCities
+    .map(city => cityCoords[city])
+    .filter(Boolean);
+
+  if (routePath.length < 2) {
     alert("Route not defined for this city");
     return;
   }
-
-  const routePath = [start, end];
 
   setActiveBuses(prev => ({
     ...prev,
@@ -687,7 +759,7 @@ function BusSimulation() {
       route: routePath,
       index: 0,
       step: 0,
-      position: start
+      position: routePath[0]
     }
   }));
 };
@@ -742,65 +814,110 @@ function BusSimulation() {
 
   }, []);
 
-  return (
-    <div>
+  
+return (
+  <div
+    style={{
+      minHeight: "100vh",
+      width: "100vw", // Force full viewport width
+      background: "#111827",
+      color: "white",
+      padding: "20px",
+      boxSizing: "border-box", // Prevents padding from causing horizontal scroll
+      overflowX: "hidden" 
+    }}
+  >
+      <h1 style={{ textAlign: "center", marginBottom: "20px", fontSize: "32px", fontWeight: "bold" }}>
+        Smart Bus Simulation Dashboard
+      </h1>
 
-      {/* 🔥 Route Selector */}
-      {/* <h2>Select Route</h2> */}
-
-      {/* 🔥 Bus List from DB */}
-      <h2>Available Buses</h2>
-
-      {buses.map((bus) => (
-        <div key={bus.id} style={{ border: "1px solid white", margin: "10px", padding: "10px" }}>
-
-          <h3>{bus.bus_number}</h3>
-
-          <p>Driver: {bus.driver_name}</p>
-          <p>Route: {bus.source} → {bus.destination}</p>
-
-          <p>Total Seats: {bus.capacity}</p>
-          <p>Passengers: {bus.passengers}</p>
-
-          <button onClick={() => startBus(bus)}>
-            Start Simulation
-          </button>
-
-        </div>
-      ))}
-
-      {/* 🗺️ Map */}
-      <MapContainer center={[20.5, 77]} zoom={6} style={{ height: "500px" }}>
-
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-        {/* 🔵 Show selected route */}        
-
-        {Object.keys(activeBuses).map((id) => (
-          <Polyline
-            key={id}
-            positions={activeBuses[id].route}
-            color="blue"
-          />
-        ))}
-
-        
-        {/* 🔥 Show ALL active buses */}
-        
-        {Object.keys(activeBuses).map((id) => (
-          <Marker
-            key={id}
-            position={activeBuses[id].position}
-            icon={busIcon}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "320px 1fr", // 320px for the list, '1fr' for the REST of the screen
+          gap: "20px",
+          width: "100%", // Takes full width of the parent div
+          height: "85vh" // Fixed height for the dashboard
+        }}
+      >
+          {/* LEFT PANEL */}
+          <div
+            style={{
+              background: "#1f2937",
+              padding: "20px",
+              borderRadius: "15px",
+              height: "100%", 
+              overflowY: "auto",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.4)"
+            }}
           >
-            <Popup>Bus {id}</Popup>
-          </Marker>
-        ))}
+            <h2 style={{ marginBottom: "20px" }}>
+//               Available Buses
+//          </h2>
+              {buses.map((bus) => (
+                <div
+                  key={bus.id}
+                  style={{
+                    border: "1px solid #374151",
+                    padding: "15px",
+                    marginBottom: "15px",
+                    borderRadius: "10px",
+                    background: "#111827"
+                  }}
+                >
+                  <h3>{bus.bus_number}</h3>
 
-      </MapContainer>
+                  <p>Driver: {bus.driver_name}</p>
+                  <p>
+                    Route: {bus.source} → {bus.destination}
+                  </p>
+                  <p>Seats: {bus.capacity}</p>
+                  <p>Passengers: {bus.passengers}</p>
 
-    </div>
-  );
+                  <button
+                    onClick={() => startBus(bus)}
+                    style={{
+                      marginTop: "10px",
+                      padding: "10px",
+                      width: "100%",
+                      borderRadius: "8px",
+                      background: "#2563eb",
+                      color: "white",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+                  >
+                    Start Simulation
+                  </button>
+                </div>
+              ))}
+          </div>
+
+          {/* RIGHT PANEL - THE MAP */}
+          <div
+            style={{
+              borderRadius: "15px",
+              overflow: "hidden",
+              height: "100%", // Fill grid height
+              width: "100%",  // Fill grid width (the 1fr space)
+              background: "#1f2937",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.4)"
+            }}
+          >
+            <MapContainer 
+               center={[20.5, 77]} 
+               zoom={6} 
+               style={{ height: "100%", width: "100%" }} // This makes it expand to the right
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {/* ... markers and polylines ... */}
+            </MapContainer>
+          </div>
+      </div>
+  </div>
+);
+
+
 }
 
 export default BusSimulation;
