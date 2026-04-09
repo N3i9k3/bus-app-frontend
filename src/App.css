@@ -1,0 +1,64 @@
+/* Full page background */
+.page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #00c6ff, #0072ff);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  font-size: 18px;
+}
+
+.navbar span {
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.navbar span:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Search Box */
+.search-box {
+  margin-top: 30px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  gap: 15px;
+}
+
+.search-box input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 180px;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #ff512f;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #dd2476;
+}
