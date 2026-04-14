@@ -1,42 +1,178 @@
+/* ===== GLOBAL APP BACKGROUND ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #081229 0%, #0f172a 50%, #1e293b 100%);
+  color: #ffffff;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* ===== PAGE CONTAINER ===== */
+.app-container {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(90deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
+}
+
+.page-card {
+  background: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* ===== HEADINGS ===== */
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px;
+  margin-bottom: 3px;
+  border-radius: 1px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+}
+
+.nav-btn {
+  background: rgba(255,255,255,0.08);
+  color: rgb(24, 202, 74);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* ===== FORM STYLING ===== */
+.form-container {
+  max-width: 650px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(46, 18, 228, 0.853);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.input-field,
+select,
+textarea {
+  width: 70%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.input-field::placeholder {
+  color: #cbd5e1;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* ===== DASHBOARD CARDS ===== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  transition: 0.3s ease;
+}
+
+/* ===== TICKET CARD ===== */
+.ticket-card {
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  color: black;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+}
+
+.ticket-header {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 18px;
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ticket-body {
+  padding: 24px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== TABLE / BUS LIST ===== */
+.table-card {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.table-card th,
+.table-card td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.table-card tr:hover {
+  background: rgba(255,255,255,0.04);
 }

@@ -501,7 +501,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-import API from "../api";
+import API from "../Services/api";
 
 const socket = io("http://localhost:5000", {
   transports: ["websocket"]
@@ -519,9 +519,13 @@ function BusMap() {
     try {
       const res = await API.get("/buses");
       setBuses(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    } catch (error) {
+        console.log("FULL ERROR:", error);
+        console.log("SERVER RESPONSE:", error.response?.data);
+      }
   };
 
   useEffect(() => {
@@ -543,8 +547,21 @@ function BusMap() {
       }));
 
       if (data.busId === selectedBusId) {
-        setRoute(prev => [...prev, [data.lat, data.lng]]);
+        setRoute(prev => {
+          const newPoint = [data.lat, data.lng];
+
+          if (
+            prev.length > 0 &&
+            prev[prev.length - 1][0] === newPoint[0] &&
+            prev[prev.length - 1][1] === newPoint[1]
+          ) {
+            return prev;
+          }
+
+          return [...prev, newPoint];
+        });
       }
+
     });
 
     return () => socket.off("locationUpdate");

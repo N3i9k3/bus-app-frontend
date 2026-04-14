@@ -620,7 +620,7 @@
 import { MapContainer, TileLayer, Marker, Polyline, Popup } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-import API from "../api";
+import API from "../Services/api";
 import L from "leaflet";
 import busImg from "../assets/bus_logo.png";
 
@@ -644,12 +644,15 @@ function BusSimulation() {
   chhatrapati_sambhajinagar: [19.8762, 75.3433], 
   beed: [18.9891, 75.7601],
   bhandara: [21.1448, 79.6521],
+  bhopal: [23.2599, 77.4126],
   buldhana: [20.5286, 76.1843],
   chandrapur: [19.9515, 79.2961],
+  delhi: [28.7041, 77.1025],
   dhule: [20.9042, 74.7749],
   gadchiroli: [20.1848, 79.9948],
   gondia: [21.4624, 80.2207],
   hingoli: [19.7153, 77.1471],
+  jaipur: [26.9124, 75.7873],
   jalgaon: [21.0077, 75.5626],
   jalna: [19.8297, 75.8800],
   kolhapur: [16.7050, 74.2433],
@@ -910,7 +913,34 @@ return (
                style={{ height: "100%", width: "100%" }} // This makes it expand to the right
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              {/* ... markers and polylines ... */}
+
+              {/* Route line */}
+              {Object.values(activeBuses).map((bus, index) => (
+                <Polyline
+                  key={index}
+                  positions={bus.route}
+                />
+              ))}
+
+              {/* Stops */}
+              {Object.values(activeBuses).map((bus, index) =>
+                bus.route.map((point, i) => (
+                  <Marker key={`${index}-${i}`} position={point}>
+                    <Popup>Stop {i + 1}</Popup>
+                  </Marker>
+                ))
+              )}
+
+              {/* Moving bus */}
+              {Object.entries(activeBuses).map(([id, bus]) => (
+                <Marker
+                  key={id}
+                  position={bus.position}
+                  icon={busIcon}
+                >
+                  <Popup>Bus {id}</Popup>
+                </Marker>
+              ))}
             </MapContainer>
           </div>
       </div>
