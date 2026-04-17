@@ -21,7 +21,14 @@ const handleLogin = async () => {
     console.log("LOGIN RESPONSE:", res.data);
 
     localStorage.setItem("token", res.data.token);
+    // localStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      if (res.data.user.role === "admin") {
+        setMode("admin");   // or redirect
+      } else {
+        setMode("user");
+      }
 
     console.log("TOKEN AFTER SAVE:", localStorage.getItem("token"));
 

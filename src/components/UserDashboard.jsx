@@ -25,6 +25,7 @@ function UserDashboard() {
   const [selectedBus, setSelectedBus] = useState(null);
   const [activeBusId, setActiveBusId] = useState(null); // ✅ FIXED
   const [myBookings, setMyBookings] = useState([]);
+  const [showBookings, setShowBookings] = useState(false);
   const [passengerType, setPassengerType] = useState("male");
   const [age, setAge] = useState("");
 
@@ -148,7 +149,10 @@ const calculateFare = (baseFare) => {
     const res = await API.post("/bookings", {
       busId: selectedBus,
       passengerName: user?.name,
-      seatNumber: seatToBook
+      seatNumber: seatToBook,
+      fare: calculatedFare,
+      passengerType: passengerType,
+      age: age || null
     });
 
     // ✅ fetch fresh booked seats from DB
@@ -353,15 +357,23 @@ const formattedArrival = formatDateTime(
     </body>
   </html>
 `;
-  const originalContent = document.body.innerHTML;
+  // const originalContent = document.body.innerHTML;
 
-  document.body.innerHTML = printContent;
+  // document.body.innerHTML = printContent;
 
-  window.print();
+  // window.print();
 
-  document.body.innerHTML = originalContent;
+  // document.body.innerHTML = originalContent;
 
-  window.location.reload();
+  // window.location.reload();
+
+  const printWindow = window.open("", "_blank");
+
+printWindow.document.write(printContent);
+printWindow.document.close();
+printWindow.focus();
+printWindow.print();
+printWindow.close();
 };
 
 
@@ -434,10 +446,15 @@ return (
       </button>
 
       <button
-        onClick={fetchMyBookings}
+        onClick={() => {
+          // fetchMyBookings();
+          // setShowBookings(true);
+          if (!showBookings) fetchMyBookings();
+          setShowBookings(!showBookings);
+        }}
         style={{ padding: "8px 15px" }}
-      >
-        My Bookings
+      > 
+        {showBookings ? "Hide Bookings" : "My Bookings"}
       </button>
     </div>
 
@@ -671,7 +688,7 @@ return (
   </div>
 )}
 
-<div
+{/* <div
   style={{
     position: "fixed",
     top: "120px",
@@ -722,12 +739,13 @@ return (
   >
     Your journey begins with comfort and safety
   </p>
-</div>
+</div> */}
 
 </div>
 
 
       {/* RIGHT SIDE */}
+    {showBookings && (
       <div
         style={{
           flex: 1,
@@ -837,6 +855,7 @@ return (
           ))
         )}
       </div>
+    )}
     </div>
   </div>
 );
