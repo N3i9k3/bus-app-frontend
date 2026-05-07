@@ -1,7 +1,7 @@
 // import axios from "axios";
 
 // const API = axios.create({
-//   baseURL: "https://bus-app-backend-kvx7.onrender.com//api"
+//   baseURL: "https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL//api"
 // });
 
 // API.interceptors.request.use((req) => {
@@ -25,7 +25,7 @@
 // import axios from "axios";
 
 // const API = axios.create({
-//   baseURL: "https://bus-app-backend-kvx7.onrender.com//api",
+//   baseURL: "https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL//api",
 // });
 
 // // token auto attach karega
@@ -50,7 +50,7 @@
 // import axios from "axios";
 
 // const API = axios.create({
-//   baseURL: "https://bus-app-backend-kvx7.onrender.com//api"
+//   baseURL: "https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL//api"
 // });
 
 // API.interceptors.request.use((req) => {
@@ -68,7 +68,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://bus-app-backend-kvx7.onrender.com//api"
+  baseURL: "https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL//api"
 });
 
 // ✅ Automatically attach token in every request
