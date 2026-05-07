@@ -2,7 +2,7 @@
 // import { io } from "socket.io-client";
 // import BusMap from "./components/BusMap";
 
-// const socket = io("https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL/");
+// const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/");
 
 // function App() {
 

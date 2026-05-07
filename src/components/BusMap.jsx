@@ -3,7 +3,7 @@
 // import { useState, useEffect } from "react";
 // import { io } from "socket.io-client";
 
-// const socket = io("https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL/");
+// const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/");
 
 // function BusMap() {
 
@@ -53,7 +53,7 @@
 // import { io } from "socket.io-client";
 // import API from "../api";
 
-// const socket = io("https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL/");
+// const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/");
 
 // function BusMap() {
 
@@ -263,7 +263,7 @@
 // import { io } from "socket.io-client";
 // import API from "../api";
 
-// const socket = io("https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL/", {
+// const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/", {
 //   transports: ["websocket"]
 // });
 
@@ -503,7 +503,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import API from "../Services/api";
 
-const socket = io("https://bus-app-backend-kvx7.import.meta.env.VITE_API_URL/", {
+const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/", {
   transports: ["websocket"]
 });
 
