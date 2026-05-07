@@ -2,7 +2,7 @@
 // import { io } from "socket.io-client";
 // import BusMap from "./components/BusMap";
 
-// const socket = io("http://localhost:5000");
+// const socket = io("http://https://bus-app-backend-kvx7.onrender.com/");
 
 // function App() {
 
