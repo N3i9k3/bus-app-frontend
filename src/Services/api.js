@@ -68,7 +68,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com//api"
+  baseURL: "https://bus-app-backend-kvx7.onrender.com/api"
 });
 
 // ✅ Automatically attach token in every request

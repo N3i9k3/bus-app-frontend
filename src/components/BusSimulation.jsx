@@ -624,7 +624,7 @@ import API from "../Services/api";
 import L from "leaflet";
 import busImg from "../assets/bus_logo.png";
 
-const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/", {
+const socket = io("https://bus-app-backend-kvx7.onrender.com", {
   transports: ["websocket"]
 });
 

@@ -503,7 +503,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import API from "../Services/api";
 
-const socket = io("https://bus-app-backend-kvx7.https://bus-app-backend-kvx7.onrender.com/", {
+const socket = io("https://bus-app-backend-kvx7.onrender.com", {
   transports: ["websocket"]
 });
 
