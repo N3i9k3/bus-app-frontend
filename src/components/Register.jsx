@@ -93,7 +93,7 @@ function Register() {
 
       <input
         style={{
-          width: "50%",
+          width: "30%",
           padding: "12px",
           marginBottom: "15px",
           borderRadius: "10px",
@@ -111,7 +111,7 @@ function Register() {
 
       <input
         style={{
-          width: "50%",
+          width: "30%",
           padding: "12px",
           marginBottom: "15px",
           borderRadius: "10px",
@@ -128,7 +128,7 @@ function Register() {
 
       <input
         style={{
-          width: "50%",
+          width: "30%",
           padding: "12px",
           marginBottom: "15px",
           borderRadius: "10px",
@@ -143,10 +143,10 @@ function Register() {
           setForm({ ...form, password: e.target.value })
         }
       />
-
+      <br />
       <button onClick={handleRegister}
         style={{
-          width: "50%",
+          width: "20%",
           padding: "15px",
           borderRadius: "12px",
           border: "none",
